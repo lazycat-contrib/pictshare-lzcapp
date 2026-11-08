@@ -1,11 +1,11 @@
-name: Build OwnTracks LPK
+name: Build PictShare LPK
 on:
   workflow_dispatch:
 permissions:
   contents: write
   pull-requests: write
 concurrency:
-  group: owntracks-lpk
+  group: pictshare-lpk
   cancel-in-progress: false
 jobs:
   lazycat:

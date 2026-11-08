@@ -1,0 +1,29 @@
+params:
+  - id: admin_pw
+    type: secret
+    name: "Admin Panel Password"
+    description: "The password for accessing the /admin admin panel. A random value has been preset; it can be viewed and modified at deployment time."
+    default_value: "Ph7wKq2mXr9tVe4b"
+    optional: false
+  - id: upload_code
+    type: string
+    name: "Upload Access Code (Optional)"
+    description: "If configured, an uploadcode must be provided for each upload; leaving it empty means it is not enabled."
+    default_value: ""
+    optional: true
+
+locales:
+  zh:
+    admin_pw:
+      name: "Admin Panel Password"
+      description: "The password for the /admin panel (a random value has been preset, which can be modified)"
+    upload_code:
+      name: "Upload Access Code"
+      description: "If configured, this code must be provided for each upload; leaving it empty means it is not enabled"
+  en:
+    admin_pw:
+      name: "Admin panel password"
+      description: "Password for the /admin panel (random default, editable)."
+    upload_code:
+      name: "Upload code"
+      description: "If set, every upload needs this code; empty = disabled."

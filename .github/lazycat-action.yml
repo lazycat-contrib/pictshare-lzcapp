@@ -10,15 +10,15 @@ update:
   allow_downgrade: false
   version_source:
     type: image
-    image: owntracks
+    image: pictshare
 build:
   toolchains: []
   run_buildscript: false
 images:
-  - id: owntracks
+  - id: pictshare
     target: service
-    service: owntracks
-    source: owntracks/recorder
+    service: pictshare
+    source: hascheksolutions/pictshare
     channel: stable
     sort: semver
     tag_regex: ^v?[0-9]+[.][0-9]+[.][0-9]+$
@@ -33,5 +33,5 @@ stores:
     enabled: false
   private:
     enabled: false
-    name: owntracks
+    name: pictshare
     skip_if_version_exists: true

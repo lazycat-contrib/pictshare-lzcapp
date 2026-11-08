@@ -1,37 +1,33 @@
 application:
-  subdomain: owntracks
+  subdomain: pictshare
   multi_instance: false
   upstreams:
     - location: /package-licenses/
       backend: file:///lzcapp/pkg/content/licenses/
     - location: /
-      backend: http://owntracks:8083/
-  ingress:
-    - protocol: tcp
-      port: 8083
-      service: owntracks
+      backend: http://pictshare:80/
 services:
-  owntracks:
-    # upstream: owntracks/recorder:1.0.4
-    image: docker.1ms.run/owntracks/recorder:1.0.4
+  pictshare:
+    # upstream: hascheksolutions/pictshare:3.7.5
+    image: docker.1ms.run/hascheksolutions/pictshare:3.7.5
     environment:
       - TZ=Asia/Shanghai
+      - MAX_UPLOAD_SIZE=100
+      # Random preset; empty would disable the admin panel entirely (airhand
+      # precedent: "empty means no protection" vars must be forced random).
+      - ADMIN_PASSWORD={{PASSWORD_admin_pw}}
     binds:
-      - /lzcapp/var/mutdata:/store
+      - /lzcapp/var/mutdata/data:/app/public/data
+      - /lzcapp/var/mutdata/logs:/app/public/logs
 usage: |
-  OwnTracks Recorder（GPL-2.0）用于存储 OwnTracks 手机应用上报的位置数据，
-  网页端可查看历史轨迹与各设备最近位置（存储目录 /store 已持久化）。
+  PictShare (AGPL-3.0) is a minimalist self-hosted media hosting service: upload images, videos and text to get shareable links; it supports automatic image resizing and format conversion.
 
-  使用方法：
-  1. 打开应用即是 Recorder 的 Web 视图（首页 last、views 等页面）。
-  2. 数据来源两种：
-     a) 局域网直连：本包开放了 TCP 8083 端口（不经平台入口鉴权），
-        手机 OwnTracks App 选择 HTTP 模式，URL 填 http://<懒猫主机IP>:8083/pub
-        即可直接上报；该端口无鉴权，仅限可信局域网使用。
-     b) 手动导入：也可用 Web 界面或 storage API 导入历史数据。
-  3. Recorder 自身无账号体系，因此未开放 public_path，
-     网页入口由平台鉴权保护（与 dufs/goshs 同判例）。
+  Usage:
+  1. After opening the app, upload directly on the homepage (drag and drop or select a file), and you will get a shareable link.
+  2. This app has no user account system, so public_path is not enabled, and the web entry is protected by platform authentication (same as the dufs/goshs precedent).
+  3. The admin panel is at /admin, with the password being the "Admin Panel Password" preset at deployment (a random value, which can be viewed and modified in the deployment parameters); uploading requires an access code only if the "Upload Access Code" parameter is configured.
 
-  说明：
-  - 本包未做实机验证，功能以官方文档为准：https://github.com/owntracks/recorder
-  - 许可证 GPL-2.0，随包分发，见 /package-licenses/。
+  Notes:
+  - This package has not been verified on a real machine; please refer to the official documentation for functionality: https://github.com/HaschekSolutions/pictshare
+  - Uploaded files are saved in /lzcapp/var/mutdata/data, and uninstalling the app will delete them; please back up regularly.
+  - The license is AGPL-3.0, bundled with the package, see /package-licenses/.

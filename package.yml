@@ -1,18 +1,23 @@
-package: community.lazycat.app.owntracks
-name: OwnTracks Recorder
-version: 1.0.4
-description: "Store and access location data published by OwnTracks apps, with a web view of history and last-seen positions."
+distributor: community
+package_id: community.lazycat.app.pictshare
+application_id: community.lazycat.app.pictshare
+arch: [amd64]
+version: 3.7.5
+category: 8
+name: PictShare
+short_description: Minimalist self-hosted media hosting (image/video/text)
+description: """PictShare is a minimalist self-hosted media hosting service. Upload images, videos and text to get shareable links. Supports automatic image resizing and conversion, and deletion codes. It has no user account system, and the admin panel is protected by a random preset password."""
 min_os_version: "1.5.0"
-homepage: https://github.com/owntracks/recorder
-author: OwnTracks Project
-license: "GPL-2.0"
+homepage: https://github.com/HaschekSolutions/pictshare
+author: Haschek Solutions
+license: "AGPL-3.0"
 permissions:
   required:
     - net.internet
 locales:
   zh:
-    name: OwnTracks Recorder
-    description: "存储 OwnTracks 应用上报的位置数据，提供历史轨迹与最近位置的网页视图。"
+    name: PictShare
+    description: "Minimalist self-hosted media hosting: upload images/videos/text to get shareable links. No account system, admin panel is protected by a random password."
   en:
-    name: OwnTracks Recorder
-    description: "Store and access location data published by OwnTracks apps, with a web view of history and last-seen positions."
+    name: PictShare
+    description: "Minimalist self-hosted media hosting: upload images/videos/text and get shareable links. No user accounts; the admin panel is protected by a random password."
